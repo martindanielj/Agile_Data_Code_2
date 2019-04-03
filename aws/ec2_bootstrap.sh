@@ -227,6 +227,7 @@ sudo chgrp -R ubuntu /home/ubuntu/elasticsearch
 sudo mkdir -p /home/ubuntu/elasticsearch/logs
 sudo chown -R ubuntu /home/ubuntu/elasticsearch/logs
 sudo chgrp -R ubuntu /home/ubuntu/elasticsearch/logs
+echo 'export PATH=$PATH:/home/ubuntu/elasticsearch/bin' | sudo tee -a /home/ubuntu/.bash_profie
 
 # Run elasticsearch
 sudo -u ubuntu /home/ubuntu/elasticsearch/bin/elasticsearch -d # re-run if you shutdown your computer
