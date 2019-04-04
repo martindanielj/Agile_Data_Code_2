@@ -1,4 +1,6 @@
-Flask
+Flask==0.12.4
+tabulate==0.8.2
+werkzeug==0.14.1
 apache-airflow
 beautifulsoup4
 bs4
