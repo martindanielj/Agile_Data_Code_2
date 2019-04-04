@@ -17,7 +17,6 @@ requests
 scipy
 selenium
 sklearn
-tabulate
 tldextract
 wikipedia
 findspark
