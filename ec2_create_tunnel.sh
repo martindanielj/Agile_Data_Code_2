@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-EC2_HOSTNAME=`aws ec2 describe-instances --instance-ids i-0465a565016aec720 --query 'Reservations[*].Instances[*].PublicDnsName' --output=text`
+EC2_HOSTNAME=`aws ec2 describe-instances --instance-ids i-006219a9df3a82f55 --query 'Reservations[*].Instances[*].PublicDnsName' --output=text`
 if [ -z $EC2_HOSTNAME ]; then
   echo ""
   echo "No hostname detected in '.ec2_hostname' :( Exiting!"
@@ -20,19 +20,19 @@ echo ""
 echo "First we will forward the port the web appliations use..."
 echo "Forwarding the remote machine's port 5000 to the local port 5000, which you can then access at http://localhost:5000"
 echo 'Executing: ssh -N -i ./agile_data_science.pem -o StrictHostKeyChecking=no -L 5000:localhost:5000 ubuntu@$EC2_HOSTNAME &'
-ssh -N -i ./agile_data_science.pem -o StrictHostKeyChecking=no -L 5000:localhost:5000 ubuntu@$EC2_HOSTNAME &
+ssh -N -i ~/.ssh/my_test_key -o StrictHostKeyChecking=no -L 5000:localhost:5000 ubuntu@$EC2_HOSTNAME &
 echo ""
 
 # Create a tunnel for port 8888 for Jupyter notebooks
 echo "Next we will forward the port the Jupyter Notebooks use..."
 echo "Forwarding the remote machine's port 8888 to the local port 8888, which you can then access at http://localhost:8888"
 echo 'Executing: ssh -N -i ./agile_data_science.pem -o StrictHostKeyChecking=no -L 8888:localhost:8888 ubuntu@$EC2_HOSTNAME &'
-ssh -N -i ./agile_data_science.pem -o StrictHostKeyChecking=no -L 8888:localhost:8888 ubuntu@$EC2_HOSTNAME &
+ssh -N -i ~/.ssh/my_test_key -o StrictHostKeyChecking=no -L 8888:localhost:8888 ubuntu@$EC2_HOSTNAME &
 echo ""
 
 # Create a tunnel for port 8080 for Airflow
 echo "Next we will forward the port that Airflow uses..."
 echo "Forwarding the remote machine's port 8080 to the local port 8080, which you can then access at http://localhost:8080"
 echo 'Executing: ssh -N -i ./agile_data_science.pem -o StrictHostKeyChecking=no -L 8080:localhost:8080 ubuntu@$EC2_HOSTNAME &'
-ssh -N -i ./agile_data_science.pem -o StrictHostKeyChecking=no -L 8080:localhost:8080 ubuntu@$EC2_HOSTNAME &
+ssh -N -i ~/.ssh/my_test_key -o StrictHostKeyChecking=no -L 8080:localhost:8080 ubuntu@$EC2_HOSTNAME &
 echo ""
